@@ -44,5 +44,4 @@ for my $line (read_file($PAGE_LOG)) {
   };
 
   my $job = Cups::DB::Jobs::Manager->find_or_create($params);
-
 }

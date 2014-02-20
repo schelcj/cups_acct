@@ -22,7 +22,7 @@ sub find_or_create {
   if (__PACKAGE__->get_jobs_count(query => $query, limit => 1)) {
     $record = __PACKAGE__->get_jobs(query => $query)->[0];
   } else {
-    $record = __PACKAGE__->new($params);
+    $record = $self->object_class->new(%{$params});
     $record->save;
   }
 
