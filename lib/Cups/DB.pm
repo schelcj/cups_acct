@@ -1,6 +1,5 @@
 package Cups::DB;
 
-use FindBin qw($Bin);
 use Rose::DB;
 use base qw(Rose::DB);
 
@@ -10,7 +9,7 @@ __PACKAGE__->register_db(
   domain   => __PACKAGE__->default_domain,
   type     => __PACKAGE__->default_type,
   driver   => 'sqlite',
-  database => qq($Bin/../sql/cups_acct.db),
+  database => q(/var/cache/cups/acct.db),
 );
 
 1;

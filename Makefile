@@ -1,4 +1,4 @@
-DB="sql/cups_acct.db"
+DB="/var/cache/cups/acct.db"
 SCHEMA="sql/schema.sql"
 
 rebuild_db:

@@ -21,7 +21,7 @@ use Time::Piece;
 use Data::Dumper;
 
 my $SPACE           = qr{\s};
-my $PAGE_LOG        = qq{$Bin/../page_log};
+my $PAGE_LOG        = qq{/var/log/cups/page_log};
 my @HEADERS         = (qw(printer uniqname job_id datetime tz_offset page_number num_copies job_billing host_name));
 my $DATETIME_FORMAT = q{[%d/%b/%Y:%H:%M:%S};
 
