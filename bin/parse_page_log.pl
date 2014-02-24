@@ -8,7 +8,7 @@
 # care in the future change the format in /etc/cups/cupsd.conf
 
 use FindBin qw($Bin);
-use lib qq{$Bin/../lib} qq{$Bin/../lib/perl5};
+use lib qq{$Bin/../lib}, qq{$Bin/../lib/perl5};
 
 use Cups::DB;
 use Cups::DB::Jobs;
