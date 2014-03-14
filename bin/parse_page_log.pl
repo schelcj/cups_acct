@@ -29,9 +29,6 @@ for my $line (read_file($PAGE_LOG)) {
   my @parts = split($SPACE, $line);
   my @fields = splice(@parts, 0, scalar(@HEADERS));
   my $job_ref = {mesh @HEADERS, @fields};
-
-  next if $job_ref->{page_number} eq 'total';
-
   my $params = {
     printer     => $job_ref->{printer},
     uniqname    => $job_ref->{uniqname},
@@ -43,5 +40,18 @@ for my $line (read_file($PAGE_LOG)) {
     printed_at  => Time::Piece->strptime($job_ref->{datetime}, $DATETIME_FORMAT)->epoch,
   };
 
-  my $job = Cups::DB::Jobs::Manager->find_or_create($params);
+  if ($job_ref->{page_number} eq 'total') {
+    my $job = Cups::DB::Jobs::Manager->get_jobs(
+      query => [
+        printer  => $params->{printer},
+        uniqname => $params->{uniqname},
+        job_id   => $params->{job_id},
+      ]
+    )->[0];
+
+    $job->num_copies($params->{num_copies});
+    $job->save;
+  } else {
+    Cups::DB::Jobs::Manager->find_or_create($params);
+  }
 }
